@@ -1,0 +1,11 @@
+nav{
+    background: transparent;
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 30px;
+}
+
+
+.logo-container{
+    width: 86px;
+}

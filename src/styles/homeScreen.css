@@ -1,0 +1,33 @@
+.home-container{
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.suggestion-box-container{
+    width: 700px;
+    background-color: #fff;
+    margin: 20px auto;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.suggestion-cards-container{
+    margin: 20px 0 ;
+    display: flex;
+    gap:15px
+}
+
+.suggestion-card{
+    width: 120px;
+}
+
+.suggestion-card-img-container , .suggestion-card-img-container img{
+    width: 100%;
+}
+
+.suggestion-card-title{
+    font-size: 12px;
+    font-weight: 300;
+}
