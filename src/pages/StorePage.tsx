@@ -13,12 +13,18 @@ interface FilterInterface{
 
 const StorePage = () => {
   const [products,setProducts]=useState<product[]>(fakeProducts)
+  const [loadAll,setLoadAll]=useState(false);
   const [filters,setFilters]=useState<FilterInterface>({
     price:[true,true,true],
     ratings:[true,true,true,true,true]
   })
-  let results:product[]=products;
+  const [searchBarValue,setSearchBarValue]=useState<string>("")
 
+  let results:product[]=products;
+  
+  if(searchBarValue!==""){
+      results=products.filter((item) => item.name.toLowerCase().includes(searchBarValue.toLowerCase()));
+  }
   const handleLike=(id:string)=>{
     const tempProducts=[...products];
     tempProducts.map(item=>{
@@ -29,9 +35,7 @@ const StorePage = () => {
     })
     setProducts(tempProducts)
   }
-
  
-
  
   results=results.filter((product)=>{
     if((filters.price[0] && product.price<500) || (filters.price[1] && product.price<=1000 && product.price>=500) || (filters.price[2] && product.price<=1500 && product.price>1000))
@@ -43,11 +47,13 @@ const StorePage = () => {
     return false
   });
 
-  console.log(results )
+  if(!loadAll){
+    results=results.slice(0,8);
+  }
 
   return (
     <>
-    <NavBarComponent/>
+    <NavBarComponent searchBarValue={searchBarValue} setSearchBarValue={setSearchBarValue} />
     <div className="store-page-heading">
     Search Results
     </div>
@@ -55,6 +61,11 @@ const StorePage = () => {
       <SideBarComponent filters={filters} setFilters={setFilters} />
       <StoreResultsComponent products={results} handleLike={handleLike}/>
     </div>
+    {!loadAll?<div className="view-more-button-container">
+    <button onClick={()=>setLoadAll(true)} className="view-more-button">
+      Load All
+    </button>
+    </div>:""}
     </>
   )
 }

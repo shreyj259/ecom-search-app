@@ -10,6 +10,7 @@ interface Props{
 
 const NavBarComponent = ({searchBarValue,setSearchBarValue}:Props) => {
   const {pathname}=useLocation()
+
   return (
     <nav>
        { pathname==="/store"?<SearchBarComponent searchBarValue={searchBarValue} setSearchBarValue={setSearchBarValue}/>:""}
