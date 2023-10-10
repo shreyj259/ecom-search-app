@@ -7,7 +7,7 @@ const SuggestionBoxComponent = ({products}:{products:product[]}) => {
     <div className='suggestion-box-container'>
       <span >Latest Trends</span>
       <div className="suggestion-cards-container">
-       {products.map(item=><SuggestionCard name={item.name} image={item.image} />)} 
+       {products.map(item=><SuggestionCard key={item.id} name={item.name} image={item.image} />)} 
       </div>
     </div>
   )

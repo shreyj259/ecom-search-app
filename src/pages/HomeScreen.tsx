@@ -20,7 +20,7 @@ const HomeScreen= () => {
     <>
     <div style={{backgroundImage:"url('./assets/bg.png')"}} className='home-container'>
     <NavBarComponent/>
-    <SearchBarComponent  seachBarValue={seachBarValue} setSearchBarValue={setSearchBarValue}  setInFocus={setInFocus} />
+    <SearchBarComponent  searchBarValue={seachBarValue} setSearchBarValue={setSearchBarValue}  setInFocus={setInFocus} />
     {inFocus &&<SuggestionBoxComponent products={result}/>}
     </div>
     </>

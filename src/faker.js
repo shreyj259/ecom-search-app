@@ -1,12 +1,14 @@
 import { faker } from '@faker-js/faker';
 
 function generateProduct() {
+  const productId=faker.string.uuid();
   const productName = faker.commerce.productName();
-  const productPrice = faker.commerce.price();
-  const productImage = faker.image.url({width:120,height:170});
-  const productRating = parseFloat((Math.random() * 5).toFixed(1));
+  const productPrice = faker.commerce.price({min:100,max:1500});
+  const productImage = faker.image.url({width:240,height:320});
+  const productRating = Math.floor((Math.random() * 5)+1);
 
   return {
+    id:productId,
     name: productName,
     price: parseFloat(productPrice),
     image: productImage,

@@ -1,3 +1,16 @@
+.r-padding{
+    margin: 0 auto !important;
+    border: 1px solid rgb(208, 208, 208);
+    padding: 5px 10px !important;
+}
+
+.r-padding .search-icon-container img{
+    width: 25px;
+    padding: 4px 0;
+}
+
+
+
 .searchbar-container{
     display: flex;
     border-radius: 15px;

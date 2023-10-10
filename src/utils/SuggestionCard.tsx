@@ -1,6 +1,7 @@
 import React from 'react'
 
 interface Props{
+  key:string,
   name:string,
   image:string
 }

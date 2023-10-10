@@ -1,18 +1,21 @@
 import React from 'react'
-import { Link,useNavigate } from "react-router-dom";
-import './styles/searchBar.css'
+import { Link,useLocation,useNavigate } from "react-router-dom";
+import '../styles/searchBar.css'
 
 interface Props{
-  setInFocus:Function,
-  seachBarValue:string,
-  setSearchBarValue:Function
+  setInFocus?:Function,
+  searchBarValue?:string,
+  setSearchBarValue?:Function
 }
 
-const SearchBarComponent = ({setInFocus,seachBarValue,setSearchBarValue}:Props) => {
+const SearchBarComponent = ({setInFocus,searchBarValue,setSearchBarValue}:Props) => {
   const navigate=useNavigate()
+  const {pathname}=useLocation()
   
   const handleFocus=()=>{
+    if(setInFocus){
     setInFocus((prev:boolean)=>!prev);
+    }
   }
 
   const handleEnter=(e:any)=>{
@@ -22,13 +25,14 @@ const SearchBarComponent = ({setInFocus,seachBarValue,setSearchBarValue}:Props) 
   }
 
   const handleInput=(e:any)=>{
+    if(setSearchBarValue)
     setSearchBarValue(e.target.value)
   }
 
   return (
-    <div className="searchbar-container">
+    <div className={`searchbar-container ${pathname==="/store"?"r-padding":""}`}>
       <div className="searchbar">
-        <input value={seachBarValue} onKeyDown={handleEnter} onChange={handleInput} onFocus={handleFocus} onBlur={handleFocus} type="text" placeholder='Search'/>
+        <input value={searchBarValue} onKeyDown={handleEnter} onChange={handleInput} onFocus={handleFocus} onBlur={handleFocus} type="text" placeholder='Search'/>
       </div>
       <div className="search-icon-container">
         <Link to="store">
