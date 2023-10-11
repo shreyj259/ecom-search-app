@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBarComponent from '../components/NavBarComponent'
 import SideBarComponent from '../components/SideBarComponent'
 import StoreResultsComponent from '../components/StoreResultsComponent'
 import '../styles/storePage.css'
 import { product } from '../utils/productInterface'
 import {fakeProducts} from '../faker';
+import { useSearchParams } from 'react-router-dom'
 
 interface FilterInterface{
   price:boolean[]
@@ -18,13 +19,19 @@ const StorePage = () => {
     price:[true,true,true],
     ratings:[true,true,true,true,true]
   })
+  const [searchParam]=useSearchParams();
   const [searchBarValue,setSearchBarValue]=useState<string>("")
-
   let results:product[]=products;
   
   if(searchBarValue!==""){
       results=products.filter((item) => item.name.toLowerCase().includes(searchBarValue.toLowerCase()));
   }
+
+  useEffect(()=>{
+    if(searchParam)
+    setSearchBarValue(searchParam.get('search') ?? "")
+  },[])
+
   const handleLike=(id:string)=>{
     const tempProducts=[...products];
     tempProducts.map(item=>{
@@ -57,9 +64,12 @@ const StorePage = () => {
     <div className="store-page-heading">
     Search Results
     </div>
+
     <div className="store-page-container">
       <SideBarComponent filters={filters} setFilters={setFilters} />
+    {results.length!==0?
       <StoreResultsComponent products={results} handleLike={handleLike}/>
+    :<div>No product found</div>}
     </div>
     {!loadAll?<div className="view-more-button-container">
     <button onClick={()=>setLoadAll(true)} className="view-more-button">

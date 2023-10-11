@@ -35,7 +35,7 @@ const SearchBarComponent = ({setInFocus,searchBarValue,setSearchBarValue}:Props)
         <input value={searchBarValue} onKeyDown={handleEnter} onChange={handleInput} onFocus={handleFocus} onBlur={handleFocus} type="text" placeholder='Search'/>
       </div>
       <div className="search-icon-container">
-        <Link to="store">
+        <Link to={`store?search=${searchBarValue}`}>
 
         <img src="./assets/search.png" alt="" />
         </Link>
